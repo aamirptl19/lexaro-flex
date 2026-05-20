@@ -38,7 +38,7 @@ export default function RequestForm({ candidateId }: Props) {
         </div>
         <p className="text-sm font-semibold text-slate-800">Request sent</p>
         <p className="mt-2 max-w-sm text-xs leading-relaxed text-slate-500">
-          We've received your interest in this candidate. A member of the Lexaro Flex
+          We&apos;ve received your interest in this candidate. A member of the Lexaro Flex
           team will be in touch with you shortly.
         </p>
         <Link
