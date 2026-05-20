@@ -55,7 +55,7 @@ async function getCandidates(filters: Filters): Promise<PreviewCandidate[]> {
     return []
   }
 
-  let results = data ?? []
+  let results = (data ?? []) as PreviewCandidate[]
 
   // Keyword filter in JS — matches ai_summary, matter_experience, and ai_extracted_skills
   if (filters.q) {
