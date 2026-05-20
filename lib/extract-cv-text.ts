@@ -8,7 +8,8 @@ export async function extractCvText(
 ): Promise<string> {
   try {
     if (mimeType === 'application/pdf') {
-      const pdfParse = (await import('pdf-parse')).default
+      type PdfParseFn = (dataBuffer: Buffer) => Promise<{ text: string }>
+      const pdfParse = (await import('pdf-parse')) as unknown as PdfParseFn
       const result = await pdfParse(buffer)
       return result.text ?? ''
     }
