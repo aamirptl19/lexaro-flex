@@ -63,7 +63,7 @@ async function getCandidates(filters: Filters): Promise<PreviewCandidate[]> {
     results = results.filter(
       (c) =>
         c.ai_summary?.toLowerCase().includes(kw) ||
-        c.matter_experience.toLowerCase().includes(kw) ||
+        (c.matter_experience ?? '').toLowerCase().includes(kw) ||
         c.ai_extracted_skills?.some((s) => s.toLowerCase().includes(kw))
     )
   }

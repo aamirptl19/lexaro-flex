@@ -12,5 +12,15 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 /**
  * Service-role client — server-side only. Never import in client components.
  * Has full DB access, bypasses RLS.
+ *
+ * The global fetch override sets cache: 'no-store' on every request so that
+ * Next.js 14's Data Cache never serves stale Supabase query results. Without
+ * this, the default fetch cache means new rows are invisible until the cache
+ * is manually revalidated.
  */
-export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey)
+export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey, {
+  global: {
+    fetch: (url: RequestInfo | URL, options?: RequestInit) =>
+      fetch(url, { ...options, cache: 'no-store' }),
+  },
+})
